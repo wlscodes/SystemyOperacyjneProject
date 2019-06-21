@@ -16,8 +16,8 @@ echo -n "Podaj rozszerzenie: "
 read extension
 
 #sciezka dla testow
-pathFrom="/home/student/Desktop/folder"
-pathTo="/home/student/Desktop"
+#pathFrom="/home/student/Desktop/folder"
+#pathTo="/home/student/Desktop"
 
 checkPath $pathFrom
 checkPath $pathTo
