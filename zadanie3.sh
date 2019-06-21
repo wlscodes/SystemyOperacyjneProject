@@ -16,8 +16,8 @@ echo -n "Podaj rozszerzenie: "
 read extension
 
 #sciezka dla testow
-#pathFrom="/home/student/Desktop/zrodlo"
-#pathTo="/home/student/Desktop/miejsce"
+pathFrom="/home/student/Desktop/folder"
+pathTo="/home/student/Desktop"
 
 checkPath $pathFrom
 checkPath $pathTo
@@ -25,10 +25,19 @@ checkPath $pathTo
 extension="*."$extension
 
 count=`find $pathFrom -maxdepth 1 -iname $extension -type f | wc -l`
+
+files=`find $pathFrom -maxdepth 1 -iname $extension -type f`
+
 if [ $count -gt 0 ]
 then
-	find $pathFrom -maxdepth 1 -iname $extension -exec cp {} $pathTo \;
+	for file in $files
+	do
+		filename=`basename $file`
+		date=`date '+%Y%m%d'`
+		cp $file $pathTo"/"$date$filename
+	done
 else
 	echo "Brak plikow "$extension" w folderze"$pathFrom
 fi
 
+echo "Skopiowano "$count" plik/ow."

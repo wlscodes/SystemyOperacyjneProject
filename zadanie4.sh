@@ -57,7 +57,23 @@ do
 	fi
 done
 
+#Wypisz liste kont z grupami
 echo "Lista kont: "
 grep studenci /etc/group
 
 
+#Czy chcesz usunac konta urzytkownikow?
+echo "Czy chcesz usunac stworzone konta[Y-TAK] ?"
+read delete
+if [ "$delete" == "Y" ]
+then
+	for(( i=1; $i <= $number; i++ ))
+	do
+		sudo userdel -f "user"$i
+		echo "Usunieto konto user"$i
+	done
+fi
+
+#Wypisz liste kont po usunieciu
+echo "Lista kont po usunieciu: "
+grep studenci /etc/group
